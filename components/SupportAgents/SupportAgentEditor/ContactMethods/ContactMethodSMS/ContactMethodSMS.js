@@ -1,0 +1,1 @@
+define(["libs/knockout"],function(a){return function(){var b=this;b.type="Sms",b.countryCode=a.observable(""),b.number=a.observable("")}});

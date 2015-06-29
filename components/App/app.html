@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Event Store On Call Schedule Manager</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <!--ko if: canSave-->
+                <li data-bind="click: addSelectedDates"><a href="javascript:void(0)">Add Selected Dates</a></li>
+                <li data-bind="click: removeSelectedDates"><a href="javascript:void(0)">Remove Selected Dates</a></li>
+            <!--/ko-->
+            <!--ko if: isLoggedIn()-->
+                <li data-bind="click: function(){canLogin(false)}"><a href="javascript:void(0)">Logout</a></li>
+            <!--/ko-->
+        </ul>
+        
+    </div>
+</nav>
+<!--ko foreach: errorMessages -->
+        <div class="alert " role="alert" data-bind="css: {'alert-danger alert-dismissible': $parent.isSuccess() == false, 'alert-success alert-dismissible': $parent.isSuccess() == true}">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span data-bind="text: $data"></span>
+        </div>
+<!-- /ko -->
+<!--ko ifnot: isLoading()-->
+<div class="container main-override">
+    <!--ko if: isLoggedIn()-->
+    <div class="row">
+        <!--Support Agent Panel Begin-->
+        <div class="col-md-4">
+            <support-agents-widget params="{ selectedCallback: agentSelectionChanged }"></support-agents-widget>
+        </div>
+
+        <div class="col-md-8">
+            <calendar-widget params="{ selectedCallback: dateSelectionChanged }"></calendar-widget>
+        </div>
+    </div>
+    <!--/ko-->
+    <!--ko ifnot: isLoggedIn()-->
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <login-widget params="{ selectedCallback: canLogin,}"></login-widget>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <!--/ko-->
+
+</div>
+<!--/ko-->
+
+<!--ko if: isLoading()-->
+	<h1>Fetching Data - Please Wait.</h1>
+<!--/ko-->

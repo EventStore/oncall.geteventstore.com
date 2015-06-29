@@ -1,0 +1,58 @@
+<div class="panel show panel-primary support-agent-editor">
+    <div class="panel-heading">
+        <h3 class="panel-title"><!-- ko if: isNew -->New<!-- /ko --><!-- ko ifnot: isNew -->Edit<!-- /ko --> Support Agent</h3>
+    </div>
+    <div class="panel-body">
+        <!--ko foreach: errorMessages -->
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span data-bind="text: $data"></span>
+        </div>
+        <!-- /ko -->
+        <div class="input-group">
+            <span class="input-group-addon" id="first-name-addon">First Name:</span>
+            <input type="text" class="form-control" data-bind="value: firstName" placeholder="First Name" id="firstNameInput" aria-describedby="first-name-addon">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon" id="last-name-addon">Last Name:</span>
+            <input type="text" class="form-control" data-bind="value: lastName" placeholder="Last Name" id="lastNameInput" aria-describedby="last-name-addon">
+        </div>
+
+        <div class="input-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                Add A Contact Method <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" role="menu">
+                <li data-bind="click: addEmail"><a href="javascript:void(0)">Email Address</a></li>
+                <li data-bind="click: addPhone"><a href="javascript:void(0)">Phone Number</a></li>
+                <li data-bind="click: addSms"><a href="javascript:void(0)">SMS Number</a></li>
+            </ul>
+        </div>
+        <!-- ko foreach: contactMethods -->
+            <!-- ko if: $data.type == "Email" -->
+                <email-editor params="$data"></email-editor>
+            <!-- /ko -->
+            <!-- ko if: $data.type == "Phone" -->
+                <phone-editor params="$data"></phone-editor>
+            <!-- /ko -->
+            <!-- ko if: $data.type == "Sms" -->
+                <phone-editor params="$data"></phone-editor>
+            <!-- /ko -->
+        <!-- /ko -->
+        <!--Add Contact Methods Here-->
+        <hr class="seperator contact-methods-end"></hr>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Assigned Colour</div>
+            </div>
+            <div class="panel-body">
+                <input type="color" class="form-control" data-bind="value: assignedColour" id="assignedColourInput">
+            </div>
+        </div>
+        <button data-bind="click: function(){saveAgent($parent)}"class="btn btn-success pull-left">Save</button>
+        <button data-bind="click: $parent.returnToList" class="btn btn-danger pull-right">Cancel</button>
+    </div>
+</div>

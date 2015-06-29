@@ -1,0 +1,14 @@
+<hr class="seperator contact-methods"></hr>
+<div class="row contact-methods">
+	<div class="alert alert-info" role="alert">
+	    <span class="glyphicon glyphicon-envelope"></span> Email Contact
+	</div>
+	<div class="input-group">
+
+		<span class="input-group-addon" id="email-address-addon">Email Address:</span>
+	    <input type="text" class="form-control" data-bind="value: $parent.address" placeholder="user@domain.com" aria-describedby="email-address-addon">
+	</div>
+	<div class="btn-group cm-remove-btn pull-right">
+	    <button type="button" class="btn btn-danger" data-bind="click: function(){$parents[1].removeContactMethod($parent)}">Remove</button>
+	</div>
+</div>

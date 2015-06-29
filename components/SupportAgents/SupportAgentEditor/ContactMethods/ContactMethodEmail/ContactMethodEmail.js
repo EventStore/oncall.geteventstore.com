@@ -1,0 +1,1 @@
+define(["libs/knockout"],function(a){return function(){var b=this;b.type="Email",b.address=a.observable("")}});

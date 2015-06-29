@@ -1,0 +1,80 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Schedule Calendar: <span data-bind="text: currentTitleDisplay()"></span></h3>
+    </div>
+    <nav class="navbar navbar-default">
+        <div class="collapse navbar-collapse" id="schedule-navbar-parts">
+            <ul class="nav navbar-nav navbar-left">
+                <li data-bind="click: clearSelectedDates"><a href="javascript:void(0)">Clear Selected Dates</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li data-bind="click: prevMonth"><a href="javascript:void(0)">Prev Month</a></li>
+                <li data-bind="click: nextMonth"><a href="javascript:void(0)">Next month</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--ko foreach: calendarErrors -->
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span data-bind="text: $data"></span>
+        </div>
+    <!-- /ko -->
+    <!--ko if: addRemoveSuccess-->
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-bind="click: messageDismissed"data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span data-bind="text: addRemoveSuccessMessage"></span>
+        </div>
+    <!--/ko-->
+    <div class="panel-body">
+        <strong>
+            <div class="calendar-day title">Monday</div>
+            <div class="calendar-day title">Tuesday</div>
+            <div class="calendar-day title">Wednesday</div>
+            <div class="calendar-day title">Thursday</div>
+            <div class="calendar-day title">Friday</div>
+            <div class="calendar-day title">Saturday</div>
+            <div class="calendar-day title">Sunday</div>
+        </strong>
+    </div>
+    <hr class="rule-divide"></hr>
+    <div class="panel-body">
+        <!--ko foreach: disabledBlocksStart-->
+            <div class=" panel panel-default calendar-day">
+                <div class="panel-heading disabled">
+                    <span class="panel-title">&nbsp;</span>
+                </div>
+                <div class="panel-body disabled">&nbsp;
+                </div>
+            </div>
+        <!--/ko-->
+        <!--ko foreach: currentDates-->
+            <!--ko if: $data !== null-->
+            <div class="panel panel-default calendar-day" data-bind="click: $parent.selectDate.bind($data.dateTime), css: {'selected': $parent.selectedDates.indexOf($data) != -1, '': $parent.selectedDates.indexOf($data) == -1}">
+                <div class="panel-heading" data-bind="css: {'date-passed': moment($data.dateTime) <= moment() && moment($data.dateTime).year() <= moment().year(), 'current-day': moment($data.dateTime).date() == moment().date() && moment($data.dateTime).month() == moment().month() && moment($data.dateTime).year() == moment().year()}">
+                    <span class="panel-title" data-bind="text: moment($data.dateTime).format('Do'),"></span>
+                </div>
+                <div class="panel-body fill unselected" data-bind="text: $data.supportAgentName, style: {'background-color': $data.supportAgentColour}"></div>
+            </div>
+            <!--/ko-->
+            <!--ko if: $data === null-->
+            <div class="panel panel-default calendar-day" data-bind="click: $parent.selectDate.bind($data.dateTime), css: {'selected': $parent.selectedDates.indexOf($data) != -1, '': $parent.selectedDates.indexOf($data) == -1}">
+                <div class="panel-heading" data-bind="css: {'date-passed': moment($data.dateTime) <= moment()  && moment($data.dateTime).year() <= moment().year(), 'current-day': moment($data.dateTime).date() == moment().date() && moment($data.dateTime).month() == moment().month() && moment($data.dateTime).year() == moment().year()}">
+                    <span class="panel-title" data-bind="text: moment($data.dateTime).format('Do'),"></span>
+                </div>
+                <div class="panel-body fill unselected">No-One</div>
+            </div>
+            <!--/ko-->
+        <!--/ko-->
+        <!--ko foreach: disabledBlocksEnd-->
+            <div class=" panel panel-default calendar-day">
+                <div class="panel-heading disabled">
+                    <span class="panel-title">&nbsp;</span>
+                </div>
+                <div class="panel-body disabled">&nbsp;
+                </div>
+            </div>
+        <!--/ko-->
+    </div>  
+</div> 

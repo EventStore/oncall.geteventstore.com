@@ -1,0 +1,1 @@
+define(["libs/knockout","./ContactMethodEmail/ContactMethodEmail","./ContactMethodPhone/ContactMethodPhone"],function(){return function(){}});

@@ -1,0 +1,6 @@
+<!-- ko if: isEditing -->
+<div data-bind="component: { name: 'support-agent-editor', params: { id: $data.editId() } }"></div>
+<!-- /ko -->
+<!-- ko ifnot: isEditing -->
+<support-agent-list params="{ selectedCallback: agentSelectionChanged }"></support-agent-list>
+<!-- /ko -->

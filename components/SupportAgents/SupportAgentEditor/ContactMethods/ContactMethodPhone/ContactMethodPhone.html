@@ -1,0 +1,22 @@
+<hr class="seperator contact-methods"></hr>
+<div class="row contact-methods">
+	<div class="alert alert-info" role="alert">
+        <!-- ko if: $parent.type =="Phone" -->
+            <span class="glyphicon glyphicon-phone"></span> Phone Number
+        <!-- /ko -->
+        <!-- ko if: $parent.type == "Sms" -->
+            <span class="glyphicon glyphicon-comment"></span> SMS Number
+        <!-- /ko -->
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" id="country-code-addon">Country Code:</span>
+        <input type="text" class="form-control" data-bind="value: $parent.countryCode" placeholder="+44" aria-describedby="country-code-addon">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" id="p-number-addon">Number:</span>
+        <input type="text" class="form-control" data-bind="value: $parent.number" placeholder="1234 123 456" aria-describedby="p-number-addon">
+    </div>
+    <div class="btn-group cm-remove-btn pull-right">
+        <button type="button" class="btn btn-danger" data-bind="click: function() { $parents[1].removeContactMethod($parent) }">Remove</button>
+    </div>
+</div>

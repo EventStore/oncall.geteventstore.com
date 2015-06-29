@@ -1,0 +1,24 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Support Agents</h3>
+    </div>
+    <!--ko if: supportAgents().length == 0 -->
+        <ul class="list-group">
+            <li class="list-group-item list-items">
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><strong> Alert: </strong>There are no Support Agents here...
+                </div>
+            </li>
+        </ul>
+    <!--/ko--> 
+    <ul class="list-group" data-bind="foreach: supportAgents">
+        <li class="list-group-item list-items support-agent" data-bind="click: $parent.agentClicked.bind($data), css: {'selected': $parent.selectedAgentId() == $data.id, '': $parent.selectedAgentId() != $data.id},style: { 'background-color':$data.assignedColour}">
+            <span class="glyphicon" data-bind= "css: {'glyphicon-ok': $parent.selectedAgentId() == $data.id, 'glyphicon-user': $parent.selectedAgentId() != $data.id}"></span>
+            <span data-bind="text: firstName"></span>
+            <span data-bind="text: lastName"></span>
+
+            <span class="pull-right" data-bind="click: function() { $parents[1].edit($data); }"><span class="label label-primary">Edit</span></span>
+        </li>
+    </ul>
+</div>
+<button data-bind="click: $parent.new" class="btn btn-primary">New Support Agent</button>

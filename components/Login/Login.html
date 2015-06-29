@@ -1,0 +1,30 @@
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">Schedule Login</h3>
+	</div>
+	<div class="panel-body">
+		<!--ko if: loginError()-->
+			<div class="alert alert-danger" role="alert">
+				<strong>Error:</strong> There was a problem logging in.
+			</div>
+		<!--/ko-->
+		<!--ko if: isLoggingIn()-->
+			<div class="alert alert-warning" role="alert">
+				<strong>Warning:</strong> Currently logging in please wait.
+			</div>
+		<!--/ko-->
+		<p>Please enter the login details below:</p>
+
+				<div class="input-group line">
+					<span class="input-group-addon" id="usernameAddon">Username</span>
+					<input type="text" class="form-control" placeholder="Username" data-bind="value: username" aria-describedby="usernameAddon">
+				</div>
+				<div class="input-group line">
+					<span class="input-group-addon" id="passwordAddon">Password</span>
+					<input type="password" class="form-control" placeholder="Password" data-bind="value: password" aria-describedby="passwordAddon">
+				</div>	
+
+			<button class="btn btn-success pull-right" data-bind="click: function(){checkLogin()}">Login</button>
+			</div>
+	</div>
+</div>

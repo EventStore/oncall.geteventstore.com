@@ -17,14 +17,14 @@
 
 				<div class="input-group line">
 					<span class="input-group-addon" id="usernameAddon">Username</span>
-					<input type="text" class="form-control" placeholder="Username" data-bind="value: username" aria-describedby="usernameAddon">
+					<input type="text" class="form-control" placeholder="Username" data-bind="value: username,disable: isLoggingIn" aria-describedby="usernameAddon">
 				</div>
 				<div class="input-group line">
 					<span class="input-group-addon" id="passwordAddon">Password</span>
-					<input type="password" class="form-control" placeholder="Password" data-bind="value: password" aria-describedby="passwordAddon">
+					<input type="password" class="form-control" placeholder="Password" data-bind="value: password, valueUpdate: 'afterkeydown',disable: isLoggingIn" aria-describedby="passwordAddon" onkeydown="if (event.keyCode == 13) document.getElementById('btnLogin').click()">
 				</div>	
 
-			<button class="btn btn-success pull-right" data-bind="click: function(){checkLogin()}">Login</button>
+			<button class="btn btn-success pull-right" id="btnLogin" data-bind="click: function(){checkLogin()},disable: isLoggingIn">Login</button>
 			</div>
 	</div>
 </div>

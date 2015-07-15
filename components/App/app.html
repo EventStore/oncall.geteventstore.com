@@ -11,6 +11,12 @@
             <!--/ko-->
             <!--ko if: isLoggedIn()-->
                 <li data-bind="click: function(){canLogin(false)}"><a href="javascript:void(0)">Logout</a></li>
+                <!--ko ifnot: showTickets()-->
+                    <li data-bind="click: function(){showTickets(true)}"><a href="javascript:void(0)">Show Tickets</a></li>
+                <!--/ko-->
+                <!--ko if: showTickets()-->
+                    <li data-bind="click: function(){showTickets(false)}"><a href="javascript:void(0)">Hide Tickets</a></li>
+                <!--/ko-->
             <!--/ko-->
         </ul>
         
@@ -27,21 +33,27 @@
 <div class="container main-override">
     <!--ko if: isLoggedIn()-->
     <div class="row">
-        <!--Support Agent Panel Begin-->
-        <div class="col-md-4">
-            <support-agents-widget params="{ selectedCallback: agentSelectionChanged }"></support-agents-widget>
-        </div>
+        <!--ko ifnot: showTickets()-->
+            <div class="col-md-4">
+                <support-agents-widget params="{ selectedCallback: agentSelectionChanged }"></support-agents-widget>
+            </div>
 
-        <div class="col-md-8">
-            <calendar-widget params="{ selectedCallback: dateSelectionChanged }"></calendar-widget>
-        </div>
+            <div class="col-md-8">
+                <calendar-widget params="{ selectedCallback: dateSelectionChanged }"></calendar-widget>
+            </div>
+        <!--/ko-->
+        <!--ko if: showTickets()-->
+            <div class="col-md-12">
+                <ticket-widget></ticket-widget>
+            </div>
+        <!--/ko-->
     </div>
     <!--/ko-->
     <!--ko ifnot: isLoggedIn()-->
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <login-widget params="{ selectedCallback: canLogin,}"></login-widget>
+            <login-widget params="{ selectedCallback: canLogin}"></login-widget>
         </div>
         <div class="col-md-4"></div>
     </div>

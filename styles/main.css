@@ -115,6 +115,14 @@
 	width:85%;
 }
 
+.container.bar-small{
+	height:40px;
+}
+
 .input-group.line{
 	margin:7.5px;
+}
+
+.no-bottom-margin{
+	margin-bottom: 0px;
 }

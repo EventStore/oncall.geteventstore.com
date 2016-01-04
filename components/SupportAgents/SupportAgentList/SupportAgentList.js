@@ -1,1 +1,55 @@
-define(["libs/knockout"],function(a){return function(b){function c(){var a=new XMLHttpRequest;a.open("GET",window.Config.APIBaseUrl+"agents/",!0),a.setRequestHeader("Accept","application/json"),a.setRequestHeader("Authorization",userAccessKey),a.onload=function(){if(this.status>=200&&this.status<400){var a=JSON.parse(this.response);d.supportAgents(a)}},a.onerror=function(){},a.send()}var d=this;console.log("Support Agent List Params:",b),d.agentSelectionChanged=b.selectedCallback||function(){},d.supportAgents=a.observableArray([]),d.selectedAgentId=a.observable(""),d.selectedAgentColour=a.observable(""),d.agentClicked=function(a){a.id===d.selectedAgentId()?(d.agentSelectionChanged(void 0,void 0,void 0),d.selectedAgentId(void 0),d.selectedAgentColour(void 0),console.log(a)):(d.agentSelectionChanged(a.id,a.firstName+" "+a.lastName,a.assignedColour),d.selectedAgentId(a.id),d.selectedAgentColour(a.assignedColour),console.log(a))},d.addAgent=function(a){d.supportAgents.push(a)},c()}});
+define(['libs/knockout'], function SupportAgentListViewModel(ko) {
+    return function(params) {
+        var self = this;
+        console.log("Support Agent List Params:", params);
+        self.agentSelectionChanged = params.selectedCallback || function() {};
+        self.supportAgents = ko.observableArray([]);
+        self.selectedAgentId = ko.observable("");
+        self.selectedAgentColour = ko.observable("");
+
+        function LoadAllSupportAgents(){
+            var  request = new XMLHttpRequest();
+            request.open('GET', window.Config.APIBaseUrl + 'agents/', true);
+            request.setRequestHeader('Accept', 'application/json');
+            request.setRequestHeader('Authorization', userAccessKey);
+            request.onload = function() {
+                if (this.status >= 200 && this.status < 400) {
+                    // Success!
+                    var data = JSON.parse(this.response);
+                    self.supportAgents(data);
+
+
+                } else {
+                    // We reached our target server, but it returned an error
+                }
+            };
+
+            request.onerror = function() {
+                // There was a connection error of some sort
+            };
+
+            request.send();
+        }
+
+        self.agentClicked = function(agentObject) {
+            if(agentObject.id === self.selectedAgentId()) {
+                self.agentSelectionChanged(undefined,undefined,undefined);
+                self.selectedAgentId(undefined);
+                self.selectedAgentColour(undefined);
+                console.log(agentObject);
+            } else {
+                self.agentSelectionChanged(agentObject.id,agentObject.firstName + " " + agentObject.lastName,agentObject.assignedColour);
+                self.selectedAgentId(agentObject.id);
+                self.selectedAgentColour(agentObject.assignedColour);
+                console.log(agentObject);
+            }
+        };
+
+        self.addAgent = function (agentObject) {
+            self.supportAgents.push(agentObject);
+        };
+
+        LoadAllSupportAgents();
+    };
+
+});

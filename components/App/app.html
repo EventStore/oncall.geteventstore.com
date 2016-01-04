@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar no-bottom-margin navbar-inverse">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -18,17 +18,24 @@
                     <li data-bind="click: function(){showTickets(false)}"><a href="javascript:void(0)">Hide Tickets</a></li>
                 <!--/ko-->
             <!--/ko-->
+            <p class="navbar-text">Active Tickets: <span data-bind="text: ticketsActive"></p>
+            <p class="navbar-text">Tickets Nearing SLA: <span data-bind="text: ticketsActive"></p>
+            <p class="navbar-text" data-bind="text: currentlyOnCall"></p>
         </ul>
         
     </div>
 </nav>
-<!--ko foreach: errorMessages -->
-        <div class="alert " role="alert" data-bind="css: {'alert-danger alert-dismissible': $parent.isSuccess() == false, 'alert-success alert-dismissible': $parent.isSuccess() == true}">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span data-bind="text: $data"></span>
-        </div>
-<!-- /ko -->
+<!--ko if: errorMessages.Length == 0-->
+<div class="container bar-small">
+    <div class="alert " role="alert" data-bind="css: {'alert-danger': $parent.isSuccess() == false, 'alert-success': $parent.isSuccess() == true}">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span data-bind="text: errorMessages[errorMessages.Length()]"></span>
+    </div>
+</div>
+<!--/ko-->
+
+<div class="container bar-small">
+</div>
 <!--ko ifnot: isLoading()-->
 <div class="container main-override">
     <!--ko if: isLoggedIn()-->

@@ -54,5 +54,8 @@
         </div>
         <button data-bind="click: function(){saveAgent($parent)}"class="btn btn-success pull-left">Save</button>
         <button data-bind="click: $parent.returnToList" class="btn btn-danger pull-right">Cancel</button>
+        <!--ko ifnot: isNew-->
+            <button data-bind="click: function(){hideAgent($parent)}"class="btn btn-warning pull-right">Hide</button>
+        <!--/ko-->
     </div>
 </div>

@@ -161,7 +161,7 @@ define(
 
 	    	function GetInfo(){
 	    		var getRequest = new XMLHttpRequest();
-	    		getRequest.open('GET', window.Config.APIBaseUrl + '/info',true);
+	    		getRequest.open('GET', window.Config.APIBaseUrl + 'info',true);
 	    		getRequest.setRequestHeader('Accept', 'application/json');
 
 	    		getRequest.onload = function(){

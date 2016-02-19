@@ -9,7 +9,7 @@ define(['libs/knockout'], function SupportAgentListViewModel(ko) {
 
         function LoadAllSupportAgents(){
             var  request = new XMLHttpRequest();
-            request.open('GET', window.Config.APIBaseUrl + 'agents/', true);
+            request.open('GET', window.Config.APIBaseUrl + 'agents/?includeHidden=true', true);
             request.setRequestHeader('Accept', 'application/json');
             request.setRequestHeader('Authorization', userAccessKey);
             request.onload = function() {

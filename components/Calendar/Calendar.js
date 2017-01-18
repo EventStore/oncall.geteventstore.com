@@ -1,14 +1,1 @@
-define(
-	['libs/knockout','./CalendarView/CalendarView'],
-	 function(ko,CalendarViewModel) {
-
-		ko.components.register('calendar-view', {
-			viewModel: { require: 'components/Calendar/CalendarView/CalendarView'},
-			template: { require: 'text!components/Calendar/CalendarView/CalendarView.html'}
-		});
-
-		return function(params) {
-			var self = this;
-			self.dateSelectionChanged = params.selectedCallback || function() {};
-		};
-	});
+define(["libs/knockout","./CalendarView/CalendarView"],function(a){return a.components.register("calendar-view",{viewModel:{require:"components/Calendar/CalendarView/CalendarView"},template:{require:"text!components/Calendar/CalendarView/CalendarView.html"}}),function(a){var b=this;b.dateSelectionChanged=a.selectedCallback||function(){}}});

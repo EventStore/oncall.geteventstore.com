@@ -2,6 +2,19 @@
     <div class="panel-heading">
         <h3 class="panel-title">Support Agents</h3>
     </div>
+    <nav class="navbar navbar-default">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-left">
+              <!--ko if: showHiddenAgents-->
+                  <li data-bind="click: showHideAgents"><a href="javascript:void(0)">Hide Hidden Agents</a></li>
+              <!--/ko-->
+              <!--ko ifnot: showHiddenAgents-->
+                  <li data-bind="click: showHideAgents"><a href="javascript:void(0)">Show Hidden Agents</a></li>
+              <!--/ko-->
+            </ul>
+        </div>
+        
+    </nav>
     <!--ko if: supportAgents().length == 0 -->
         <ul class="list-group">
             <li class="list-group-item list-items">

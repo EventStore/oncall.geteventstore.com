@@ -1,8 +1,1 @@
-define(["libs/knockout"], function(ko) {
-	return function() {
-		var self = this;
-		self.type="Email";
-		self.address=ko.observable("");
-		
-	};
-});
+define(["libs/knockout"],function(a){return function(){var b=this;b.type="Email",b.address=a.observable("")}});

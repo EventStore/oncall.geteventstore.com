@@ -12,9 +12,9 @@
 				</thead>
 				<tbody>
 					<!--ko foreach: collectedTickets()-->
-						<!--ko if: $data.ticketStatus === "New" || $data.ticketStatus === "AwaitingAck"-->
+						<!--ko if: $data.status === "New" || $data.status === "AwaitingAck"-->
 							<tr>
-								<td data-bind="text: $data.zenDeskId"></td><td data-bind="text: $data.subject"></td><td data-bind="text: $data.customerName"></td><td data-bind="text: $data.severity + 1"></td>
+								<td data-bind="text: $data.id"></td><td data-bind="text: $data.subject"></td><td data-bind="text: $data.customerName"></td><td data-bind="text: $data.severity + 1"></td>
 								<!--ko if: $data.serviceLevel === 0-->
 									<td>Enterprise Standard</td>
 								<!--/ko-->
@@ -27,7 +27,7 @@
 								<!--ko if: $data.serviceLevel === 3-->
 									<td>OEM</td>
 								<!--/ko-->
-								<td data-bind="text: $data.ticketStatus"></td><td data-bind="text: $data.ticketCreated"></td><td data-bind="text: $data.ticketDeadLine"></td><td data-bind="text: $data.lastCommsAttempt"></td>
+								<td data-bind="text: $data.status"></td><td data-bind="text: $data.created"></td><td data-bind="text: $data.deadLine"></td><td data-bind="text: $data.lastCommsAttempt"></td>
 							</tr>
 						<!--/ko-->
 					<!--/ko-->

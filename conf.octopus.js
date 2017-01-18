@@ -1,3 +1,1 @@
-window.Config = {
-	APIBaseUrl: "#{webapiBaseUrlInt}"
-}
+window.Config={APIBaseUrl:"#{webapiBaseUrlInt}"};
